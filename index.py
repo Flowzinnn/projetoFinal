@@ -1,6 +1,6 @@
 import os
 import time
-from cadastro import cadastroSubMenu  # Submenu de cadastro importado corretamente
+from cadastro import cadastroSubMenu  
 from consulta import consultar
 from matricula import matricular_aluno
 from administracao import administracao_menu
@@ -9,7 +9,7 @@ from administracao import administracao_menu
 def startSchool_message():
     print("""
     ░██████╗░█████╗░██╗░░██╗░█████╗░░█████╗░██╗░░░░░  ░██████╗██╗░░░██╗░██████╗████████╗███████╗███╗░░░███╗
-    ██╔════╝██╔══██╗██║░░██║██╔══██╗██╔══██╗██║░░░░░  ██╔════╝╚██╗░██╔╝██╔════╝╚══██╔══╝██╔════╝████╗░████║1
+    ██╔════╝██╔══██╗██║░░██║██╔══██╗██╔══██╗██║░░░░░  ██╔════╝╚██╗░██╔╝██╔════╝╚══██╔══╝██╔════╝████╗░████║
     ╚█████╗░██║░░╚═╝███████║██║░░██║██║░░██║██║░░░░░  ╚█████╗░░╚████╔╝░╚█████╗░░░░██║░░░█████╗░░██╔████╔██║
     ░╚═══██╗██║░░██╗██╔══██║██║░░██║██║░░██║██║░░░░░  ░╚═══██╗░░╚██╔╝░░░╚═══██╗░░░██║░░░██╔══╝░░██║╚██╔╝██║
     ██████╔╝╚█████╔╝██║░░██║╚█████╔╝╚█████╔╝███████╗  ██████╔╝░░░██║░░░██████╔╝░░░██║░░░███████╗██║░╚═╝░██║
@@ -53,7 +53,7 @@ def selectOption():
                 case _:
                     print("Opção inválida! Por favor, tente novamente.")
                     input("Pressione Enter para continuar...")
-                    os.system('cls' if os.name == 'nt' else 'clear')  # Limpa a tela após mensagem de erro
+                    os.system('cls' if os.name == 'nt' else 'clear')  
         except ValueError:
             print("Entrada inválida! Por favor, digite um número.")
             input("Pressione Enter para continuar...")

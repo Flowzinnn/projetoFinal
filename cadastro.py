@@ -26,6 +26,7 @@ def getDisciplinaId():
 def getTurmaId():
     return ''.join(random.choices(string.ascii_letters + string.digits, k=4))
 
+#Validação do CPF
 def validar_cpf(cpf):
     return cpf.isdigit() and len(cpf) == 11
 
@@ -62,7 +63,7 @@ def cadastroSubMenu():
             input("Pressione Enter para continuar...")
 
 # Funções de cadastro
-
+#Aluno
 def cadastrar_aluno():
     limpar_tela()
     print("=== Cadastro de Aluno ===")
@@ -96,6 +97,7 @@ def cadastrar_aluno():
     print(f"Aluno cadastrado com sucesso!\nNome: {nome}\nID: {alunoId}")
     input("Pressione Enter para continuar...")
 
+#Professor
 def cadastrar_professor():
     limpar_tela()
     print("=== Cadastro de Professor ===")
@@ -129,23 +131,25 @@ def cadastrar_professor():
     print(f"Professor cadastrado com sucesso!\nNome: {nome}\nID: {professorId}")
     input("Pressione Enter para continuar...")
 
+#Disciplina
 def cadastrar_disciplina():
     limpar_tela()
     print("=== Cadastro de Disciplina ===")
     nome = input("Nome da disciplina: ").strip()
     disciplinaId = getDisciplinaId()
-    carga_horaria = input("Carga horária: ").strip()
+    cargaHoraria = input("Carga horária: ").strip()
 
     disciplinas.append({
         "nome": nome,
         "disciplinaId": disciplinaId,
-        "carga_horaria": carga_horaria,
+        "cargaHoraria": cargaHoraria,
         "professor": None
     })
     limpar_tela()
     print(f"Disciplina cadastrada com sucesso!\nNome: {nome}\nID: {disciplinaId}")
     input("Pressione Enter para continuar...")
 
+#Turmas
 def cadastrar_turma():
     limpar_tela()
     print("=== Cadastro de Turma ===")
@@ -168,6 +172,7 @@ def cadastrar_turma():
     nome = input("Nome da turma: ").strip()
     codigo = getTurmaId()
 
+    #Verificação de disciplinas disponiveis para alocação.
     disciplinas_disponiveis = [d for d in disciplinas]
     print("\nDisciplinas disponíveis para associação:")
     for i, disciplina in enumerate(disciplinas_disponiveis, start=1):

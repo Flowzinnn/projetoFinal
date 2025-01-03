@@ -1,5 +1,5 @@
-from cadastro import alunos, professores, disciplinas, turmas
 import os
+from cadastro import alunos, professores, disciplinas, turmas
 
 def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -120,7 +120,7 @@ def consultar_disciplina():
         print("\n=== Informações da Disciplina ===")
         print(f"Nome: {disciplina['nome']}")
         print(f"ID: {disciplina['disciplinaId']}")
-        print(f"Carga Horária: {disciplina['cargaHoraria']}")
+        print(f"Carga Horária: {disciplina.get('cargaHoraria', 'Não especificada')}")
 
         professor = disciplina.get('professor')
         if professor:

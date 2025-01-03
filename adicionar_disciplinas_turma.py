@@ -1,8 +1,8 @@
-from cadastro import turmas, disciplinas
 import os
+from cadastro import turmas, disciplinas
 
-def limpar_tela():
-    os.system('cls' if os.name == 'nt' else 'clear')
+def limpar_tela():                          
+    os.system('cls' if os.name == 'nt' else 'clear')  #Função
 
 def adicionar_disciplinas_em_turma():
     limpar_tela()
