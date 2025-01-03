@@ -4,6 +4,7 @@ from cadastro import professores, disciplinas
 def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+# Função para alocação de professores em disciplinas
 def alocar_professores():
     limpar_tela()
     print("\n=== Alocação de Professores ===")

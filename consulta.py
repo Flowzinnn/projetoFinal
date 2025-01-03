@@ -38,6 +38,7 @@ def consultar():
 
 # Funções de consulta específicas
 
+# Aluno
 def consultar_aluno():
     limpar_tela()
     print("=== Consulta de Aluno ===")
@@ -68,7 +69,8 @@ def consultar_aluno():
         print("Aluno não encontrado.")
 
     input("\nPressione Enter para continuar...")
-
+    
+# Professor
 def consultar_professor():
     limpar_tela()
     print("=== Consulta de Professor ===")
@@ -108,7 +110,8 @@ def consultar_professor():
         print("Professor não encontrado.")
 
     input("\nPressione Enter para continuar...")
-
+    
+# Disciplinas
 def consultar_disciplina():
     limpar_tela()
     print("=== Consulta de Disciplina ===")
@@ -131,7 +134,8 @@ def consultar_disciplina():
         print("Disciplina não encontrada.")
 
     input("\nPressione Enter para continuar...")
-
+    
+# Turma
 def consultar_turma():
     limpar_tela()
     print("=== Consulta de Turma ===")

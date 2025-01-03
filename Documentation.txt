@@ -1,6 +1,6 @@
-https://pillow.readthedocs.io/en/stable/installation/basic-installation.html
+Sites que ajudaram a realizar o projeto:
 
-https://cursos.alura.com.br/course/python-crie-sua-primeira-aplicacao/task/146272
+https://pillow.readthedocs.io/en/stable/installation/basic-installation.html
 
 https://docs.python.org/pt-br/3/tutorial/controlflow.html#match-statements
 
@@ -8,28 +8,97 @@ https://docs.python.org/pt-br/3/tutorial/datastructures.html#tuples-and-sequence
 
 https://cursos.alura.com.br/course/python-crie-sua-primeira-aplicacao/task/151390
 
-#sistema escolar - cadastrar alunos, professores, turmas, disciplinas.
-        #alunos: nome matriculas, id(vc cria), data de nascimento sexo endereço telefone email
-        #professores: nome, id(vc cria), matricula, data de nascimento, sexo, endereço, telefone, email
-        #disciplina: nome código(vc cria), carga horaria, professor 
-        #turmas: nome, código(vc cria), disciplina, professor, alunos(lista-pequena)}
-        
-#deve permitir a matricula de alunos em turmas
+https://docs.python.org/3/
 
-#o sistema deve permitir a alocação de professores em disciplinas
+https://realpython.com/
 
-#o sistema deve permitir a alocação de disciplinas em turmas
+https://www.w3schools.com/python/
 
-#a consulta de alunos matriculados em turmas
-
-#a consulta de professores alocados em disciplinas
-
-#a consulta de disciplinas alocadas em turmas
-
-#permitir a filtragem de professores por disciplina
-
-#minhas ideias: criar uma interface onde eu posso selecionar o que a pessoa quer fazer (cadastrar, verificar tudo(matérias alunos professores categoria id))
-
-#cada cadastro gera uma sequencia de codigo/id aleatorio de 5 numeros que definiram quem é professor/aluno ou turma/disciplina
+https://www.programiz.com/python-programming
 
 
+                                                #sistema escolar - cadastrar alunos, professores, turmas, disciplinas.
+                                                        #alunos: nome matriculas, id(vc cria), data de nascimento sexo endereço telefone email
+                                                        #professores: nome, id(vc cria), matricula, data de nascimento, sexo, endereço, telefone, email
+                                                        #disciplina: nome código(vc cria), carga horaria, professor 
+                                                        #turmas: nome, código(vc cria), disciplina, professor, alunos(lista-pequena)}
+                                                        
+                                                #deve permitir a matricula de alunos em turmas
+
+                                                #o sistema deve permitir a alocação de professores em disciplinas
+
+                                                #o sistema deve permitir a alocação de disciplinas em turmas
+
+                                                #a consulta de alunos matriculados em turmas
+
+                                                #a consulta de professores alocados em disciplinas
+
+                                                #a consulta de disciplinas alocadas em turmas
+
+                                                #permitir a filtragem de professores por disciplina
+
+                                                #minhas ideias: criar uma interface onde eu posso selecionar o que a pessoa quer fazer (cadastrar, verificar tudo(matérias alunos professores categoria id))
+
+                                                #cada cadastro gera uma sequencia de codigo/id aleatorio de 5 numeros que definiram quem é professor/aluno ou turma/disciplina
+
+
+Estrutura do Projeto
+
+Arquivos e Funções Principais
+
+1. index.py
+        Responsável pelo menu principal do sistema e pela navegação entre as módulos.
+
+Funções principais:
+        startSchool_message: Exibe uma mensagem de boas-vindas.
+        selectOption: Permite selecionar as opções do menu principal (cadastro, consulta, matrículas, administração).
+
+2. cadastro.py
+        Contém as funções para cadastrar alunos, professores, disciplinas e turmas.
+        Verifica se CPF tem 11 dígitos.
+        Gera IDs únicos para alunos, professores, disciplinas e turmas.
+
+Funções principais:
+        cadastroSubMenu: Submenu para seleção do tipo de cadastro.
+        cadastroAluno: Cadastra um novo aluno.
+        cadastroProfessor: Cadastra um novo professor.
+        cadastrar_disciplina: Adiciona uma nova disciplina.
+        cadastrar_turma: Cria uma nova turma verificando pré-requisitos (alunos, professores e disciplinas).
+
+3. consulta.py
+        Permite realizar consultas sobre alunos, professores, disciplinas e turmas.
+        Confirma os 6 primeiros dígitos do CPF para exibir informações de alunos e professores (exibe mensagens claras caso não encontre registros).
+
+Funções principais:
+        consultar_aluno: Exibe informações de um aluno e suas turmas.
+        consultar_professor: Exibe informações de um professor, suas disciplinas e turmas.
+        consultar_disciplina: Mostra detalhes de uma disciplina e seu professor.
+        consultar_turma: Lista as disciplinas, professor responsável e alunos de uma turma.
+
+4. matricula.py
+        Realiza a matrícula de alunos em turmas.
+        Verifica se o aluno já está matriculado em uma turma antes de matricular.
+
+Funções principais:
+        matricular_aluno: Permite selecionar um aluno e matriculá-lo em uma turma.
+
+5. administracao.py
+        Menu para administrar alocações e adicionar disciplinas em turmas.
+        Garante que disciplinas e professores existam antes de realizar alocações.
+
+Funções principais:
+        alocar_professores: Aloca professores a disciplinas.
+        adicionar_disciplinas_turma: Adiciona disciplinas adicionais a turmas.
+        administracao_menu: Menu principal de administração.
+
+6. alocar_professores.py
+        Permite alocar professores às disciplinas.
+
+Funções principais:
+        alocar_professores: Seleciona um professor e o aloca a uma disciplina.
+
+7. filtrar_professores.py
+        Permite filtrar professores por disciplina.
+
+Funções principais:
+        filtrar_professores: Busca disciplinas e exibe o professor vinculado.
