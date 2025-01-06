@@ -16,8 +16,8 @@ https://www.w3schools.com/python/
 
 https://www.programiz.com/python-programming
 
-# Claro, não poderia deixar de fazer uma menção honrosa ao ChatGPT por tirar todas as minhas dúvidas
- e ajudar a resolver os INCONTAVEIS ERROS que esse código teve ao longo de sua criação.
+Claro, não poderia deixar de fazer uma menção honrosa ao ChatGPT por tirar todas as minhas dúvidas
+e ajudar a resolver os INCONTAVEIS ERROS que esse código teve ao longo de sua criação.
 
 
                                                 #sistema escolar - cadastrar alunos, professores, turmas, disciplinas.
