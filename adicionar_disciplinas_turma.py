@@ -1,13 +1,13 @@
 import os
 from cadastro import turmas, disciplinas
 
-def limpar_tela():                          
+def clearScreen():                          
     os.system('cls' if os.name == 'nt' else 'clear')
 
-# Função para adicionar discplinas em turmas
-def adicionar_disciplinas_em_turma():
-    limpar_tela()
-    print("\n=== Adicionar Disciplinas em Turma ===")
+# Função para adicionar disciplinas em turmas
+def addSubjectsToClass():
+    clearScreen()
+    print("\n=== Adicionar disciplinas em Turmas ===")
 
     if not turmas:
         print("Nenhuma turma cadastrada. Cadastre uma turma antes de continuar.")
@@ -25,14 +25,14 @@ def adicionar_disciplinas_em_turma():
         print(f"{i} - {turma['nome']} (Código: {turma['codigo']})")
 
     while True:
-        opcao_turma = input("\nDigite o número da turma que deseja editar (ou 0 para cancelar): ").strip()
-        if opcao_turma == "0":
+        classOption = input("\nDigite o número da turma que deseja editar (ou 0 para cancelar): ").strip()
+        if classOption == "0":
             print("Operação cancelada.")
             input("Pressione Enter para continuar...")
             return
 
-        if opcao_turma.isdigit() and 1 <= int(opcao_turma) <= len(turmas):
-            turma_selecionada = turmas[int(opcao_turma) - 1]
+        if classOption.isdigit() and 1 <= int(classOption) <= len(turmas):
+            selectedClass = turmas[int(classOption) - 1]
             break
         else:
             print("Opção inválida. Tente novamente.")
@@ -43,18 +43,18 @@ def adicionar_disciplinas_em_turma():
         print(f"{i} - {disciplina['nome']} (ID: {disciplina['disciplinaId']})")
 
     while True:
-        opcao_disciplina = input("\nDigite o número da disciplina que deseja adicionar (ou 0 para finalizar): ").strip()
-        if opcao_disciplina == "0":
+        subjectOption = input("\nDigite o número da disciplina que deseja adicionar (ou 0 para finalizar): ").strip()
+        if subjectOption == "0":
             break
 
-        if opcao_disciplina.isdigit() and 1 <= int(opcao_disciplina) <= len(disciplinas):
-            disciplina_selecionada = disciplinas[int(opcao_disciplina) - 1]
+        if subjectOption.isdigit() and 1 <= int(subjectOption) <= len(disciplinas):
+            selectedSubject = disciplinas[int(subjectOption) - 1]
 
-            if disciplina_selecionada in turma_selecionada['disciplinas']:
-                print(f"A disciplina {disciplina_selecionada['nome']} já está associada a esta turma.")
+            if selectedSubject in selectedClass['disciplinas']:
+                print(f"A disciplina {selectedSubject['nome']} já está associada a esta turma.")
             else:
-                turma_selecionada['disciplinas'].append(disciplina_selecionada)
-                print(f"Disciplina {disciplina_selecionada['nome']} adicionada com sucesso!")
+                selectedClass['disciplinas'].append(selectedSubject)
+                print(f"Disciplina {selectedSubject['nome']} adicionada com sucesso!")
         else:
             print("Opção inválida. Tente novamente.")
 

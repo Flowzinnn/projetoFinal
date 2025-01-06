@@ -1,13 +1,13 @@
 import os
 from cadastro import alunos, professores, disciplinas, turmas
 
-def limpar_tela():
+def clearScreen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 # Função principal para consulta
-def consultar():
+def consultationSubMenu():
     while True:
-        limpar_tela()
+        clearScreen()
         print("\n=== MENU DE CONSULTA ===")
         print("1 - Consultar Aluno")
         print("2 - Consultar Professor")
@@ -16,17 +16,17 @@ def consultar():
         print("5 - Voltar ao Menu Principal")
 
         try:
-            opcao = int(input("Selecione uma opção: ").strip())
-            limpar_tela()
-            match opcao:
+            option = int(input("Selecione uma opção: ").strip())
+            clearScreen()
+            match option:
                 case 1:
-                    consultar_aluno()
+                    consultStudent()
                 case 2:
-                    consultar_professor()
+                    consultProfessor()
                 case 3:
-                    consultar_disciplina()
+                    consultDiscipline()
                 case 4:
-                    consultar_turma()
+                    consultClass()
                 case 5:
                     break
                 case _:
@@ -36,29 +36,28 @@ def consultar():
             print("Entrada inválida! Por favor, digite um número.")
             input("Pressione Enter para continuar...")
 
-# Funções de consulta específicas
-
+# Funções de consulta específicas:
 # Aluno
-def consultar_aluno():
-    limpar_tela()
+def consultStudent():
+    clearScreen()
     print("=== Consulta de Aluno ===")
-    termo = input("Digite o nome ou ID do aluno: ").strip()
-    aluno = next((a for a in alunos if a['nome'] == termo or a['alunoId'] == termo), None)
+    term = input("Digite o nome ou ID do aluno: ").strip()
+    student = next((a for a in alunos if a['nome'] == term or a['alunoId'] == term), None)
 
-    if aluno:
+    if student:
         while True:
             cpf = input("Confirme os 6 primeiros dígitos do CPF do aluno: ").strip()
-            if cpf == aluno['cpf'][:6]:
-                limpar_tela()
+            if cpf == student['cpf'][:6]:
+                clearScreen()
                 print("\n=== Informações do Aluno ===")
-                for key, value in aluno.items():
+                for key, value in student.items():
                     print(f"{key.capitalize()}: {value}")
 
                 # Verificar em qual turma o aluno está matriculado
-                turmas_aluno = [t['nome'] for t in turmas if aluno in t['alunos']]
-                if turmas_aluno:
+                studentClasses = [t['nome'] for t in turmas if student in t['alunos']]
+                if studentClasses:
                     print("\nTurmas matriculadas:")
-                    for turma in turmas_aluno:
+                    for turma in studentClasses:
                         print(f"- {turma}")
                 else:
                     print("\nO aluno ainda não está matriculado em nenhuma turma.")
@@ -71,35 +70,40 @@ def consultar_aluno():
     input("\nPressione Enter para continuar...")
     
 # Professor
-def consultar_professor():
-    limpar_tela()
+def consultProfessor():
+    clearScreen()
     print("=== Consulta de Professor ===")
-    termo = input("Digite o nome ou ID do professor: ").strip()
-    professor = next((p for p in professores if p['nome'] == termo or p['professorId'] == termo), None)
+    term = input("Digite o nome ou ID do professor: ").strip()
+    professor = next((p for p in professores if p['nome'] == term or p['professorId'] == term), None)
 
     if professor:
         while True:
             cpf = input("Confirme os 6 primeiros dígitos do CPF do professor: ").strip()
             if cpf == professor['cpf'][:6]:
-                limpar_tela()
+                clearScreen()
                 print("\n=== Informações do Professor ===")
                 for key, value in professor.items():
                     print(f"{key.capitalize()}: {value}")
 
                 # Verificar disciplinas que o professor leciona
-                disciplinas_professor = [d['nome'] for d in disciplinas if d.get('professor') == professor]
-                if disciplinas_professor:
+                professorDisciplines = [
+                    d['nome'] for d in disciplinas if 'professores' in d and professor in d['professores']
+                ]
+                if professorDisciplines:
                     print("\nDisciplinas lecionadas:")
-                    for disciplina in disciplinas_professor:
+                    for disciplina in professorDisciplines:
                         print(f"- {disciplina}")
                 else:
                     print("\nO professor não está alocado em nenhuma disciplina.")
 
                 # Verificar turmas que possuem disciplinas lecionadas pelo professor
-                turmas_professor = [t['nome'] for t in turmas if any(d.get('professor') == professor for d in t['disciplinas'])]
-                if turmas_professor:
+                professorClasses = [
+                    t['nome'] for t in turmas
+                    if any('professores' in d and professor in d['professores'] for d in t['disciplinas'])
+                ]
+                if professorClasses:
                     print("\nTurmas associadas:")
-                    for turma in turmas_professor:
+                    for turma in professorClasses:
                         print(f"- {turma}")
                 else:
                     print("\nO professor não está associado a nenhuma turma.")
@@ -110,24 +114,27 @@ def consultar_professor():
         print("Professor não encontrado.")
 
     input("\nPressione Enter para continuar...")
+
     
 # Disciplinas
-def consultar_disciplina():
-    limpar_tela()
+def consultDiscipline():
+    clearScreen()
     print("=== Consulta de Disciplina ===")
-    termo = input("Digite o nome ou ID da disciplina: ").strip()
-    disciplina = next((d for d in disciplinas if d['nome'] == termo or d['disciplinaId'] == termo), None)
+    term = input("Digite o nome ou ID da disciplina: ").strip()
+    discipline = next((d for d in disciplinas if d['nome'] == term or d['disciplinaId'] == term), None)
 
-    if disciplina:
-        limpar_tela()
+    if discipline:
+        clearScreen()
         print("\n=== Informações da Disciplina ===")
-        print(f"Nome: {disciplina['nome']}")
-        print(f"ID: {disciplina['disciplinaId']}")
-        print(f"Carga Horária: {disciplina.get('cargaHoraria', 'Não especificada')}")
+        print(f"Nome: {discipline['nome']}")
+        print(f"ID: {discipline['disciplinaId']}")
+        print(f"Carga Horária: {discipline.get('cargaHoraria', 'Não especificada')}")
 
-        professor = disciplina.get('professor')
-        if professor:
-            print(f"Professor responsável: {professor['nome']}")
+        # Exibir todos os professores associados
+        if 'professores' in discipline and discipline['professores']:
+            print("\nProfessores responsáveis:")
+            for professor in discipline['professores']:
+                print(f"- {professor['nome']} (ID: {professor['professorId']})")
         else:
             print("Nenhum professor alocado para esta disciplina.")
     else:
@@ -136,14 +143,14 @@ def consultar_disciplina():
     input("\nPressione Enter para continuar...")
     
 # Turma
-def consultar_turma():
-    limpar_tela()
+def consultClass():
+    clearScreen()
     print("=== Consulta de Turma ===")
-    termo = input("Digite o nome ou ID da turma: ").strip()
-    turma = next((t for t in turmas if t['nome'] == termo or t['codigo'] == termo), None)
+    term = input("Digite o nome ou ID da turma: ").strip()
+    turma = next((t for t in turmas if t['nome'] == term or t['codigo'] == term), None)
 
     if turma:
-        limpar_tela()
+        clearScreen()
         print("\n=== Informações da Turma ===")
         print(f"Nome: {turma['nome']}")
         print(f"Código: {turma['codigo']}")
@@ -151,12 +158,6 @@ def consultar_turma():
         print("\nDisciplinas alocadas:")
         for disciplina in turma['disciplinas']:
             print(f"- {disciplina['nome']}")
-
-        professor_responsavel = next((disciplina['professor']['nome'] for disciplina in turma['disciplinas'] if disciplina.get('professor')), None)
-        if professor_responsavel:
-            print(f"\nProfessor responsável: {professor_responsavel}")
-        else:
-            print("\nNenhum professor alocado à turma.")
 
         print("\nAlunos matriculados:")
         for aluno in turma['alunos']:

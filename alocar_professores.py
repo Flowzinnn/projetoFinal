@@ -1,22 +1,16 @@
 import os
 from cadastro import professores, disciplinas
 
-def limpar_tela():
+def clearScreen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 # Função para alocação de professores em disciplinas
-def alocar_professores():
-    limpar_tela()
+def allocateProfessors():
+    clearScreen()
     print("\n=== Alocação de Professores ===")
 
     if not professores:
         print("Nenhum professor cadastrado. Cadastre professores antes de realizar a alocação.")
-        input("\nPressione Enter para voltar ao menu anterior...")
-        return
-
-    disciplinas_sem_professor = [d for d in disciplinas if d['professor'] is None]
-    if not disciplinas_sem_professor:
-        print("Todas as disciplinas já possuem professores alocados ou nenhuma disciplina foi cadastrada.")
         input("\nPressione Enter para voltar ao menu anterior...")
         return
 
@@ -26,9 +20,9 @@ def alocar_professores():
 
     while True:
         try:
-            escolha_professor = int(input("\nSelecione o número do professor: ").strip()) - 1
-            if 0 <= escolha_professor < len(professores):
-                professor_selecionado = professores[escolha_professor]
+            professorChoice = int(input("\nSelecione o número do professor: ").strip()) - 1
+            if 0 <= professorChoice < len(professores):
+                selectedProfessor = professores[professorChoice]
                 break
             else:
                 print("Opção inválida. Selecione um número válido.")
@@ -36,20 +30,29 @@ def alocar_professores():
             print("Entrada inválida. Por favor, digite um número.")
 
     print("\n--- Disciplinas Disponíveis ---")
-    for i, disciplina in enumerate(disciplinas_sem_professor, start=1):
+    for i, disciplina in enumerate(disciplinas, start=1):
         print(f"{i} - {disciplina['nome']} (ID: {disciplina['disciplinaId']})")
 
     while True:
         try:
-            escolha_disciplina = int(input("\nSelecione o número da disciplina: ").strip()) - 1
-            if 0 <= escolha_disciplina < len(disciplinas_sem_professor):
-                disciplina_selecionada = disciplinas_sem_professor[escolha_disciplina]
+            disciplineChoice = int(input("\nSelecione o número da disciplina: ").strip()) - 1
+            if 0 <= disciplineChoice < len(disciplinas):
+                selectedDiscipline = disciplinas[disciplineChoice]
                 break
             else:
                 print("Opção inválida. Selecione um número válido.")
         except ValueError:
             print("Entrada inválida. Por favor, digite um número.")
 
-    disciplina_selecionada['professor'] = professor_selecionado
-    print(f"\nProfessor {professor_selecionado['nome']} alocado com sucesso à disciplina {disciplina_selecionada['nome']}!")
+    # Adicionando professor à lista de professores da disciplina
+    if 'professores' not in selectedDiscipline:
+        selectedDiscipline['professores'] = []
+
+    if selectedProfessor not in selectedDiscipline['professores']:
+        selectedDiscipline['professores'].append(selectedProfessor)
+        print(f"\nProfessor {selectedProfessor['nome']} alocado com sucesso à disciplina {selectedDiscipline['nome']}!")
+    else:
+        print(f"\nO professor {selectedProfessor['nome']} já está alocado à disciplina {selectedDiscipline['nome']}.")
+
     input("\nPressione Enter para voltar ao menu anterior...")
+

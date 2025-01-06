@@ -1,6 +1,6 @@
 from cadastro import disciplinas
 
-def filtrar_professores():
+def filterProfessors():
     print("\n=== FILTRAR PROFESSORES POR MATÉRIA ===")
 
     # Verificar se há disciplinas cadastradas
@@ -18,13 +18,13 @@ def filtrar_professores():
         input("Pressione Enter para voltar ao menu anterior.")
         return
 
-    # Verificar professor associado
-    professor = disciplina.get("professor")
-    if not professor:
-        print(f"A disciplina {disciplina['nome']} ainda não possui um professor alocado.")
+    # Verificar professores associados
+    professores = disciplina.get("professores", [])
+    if not professores:
+        print(f"A disciplina {disciplina['nome']} ainda não possui professores alocados.")
     else:
-        print(f"\nProfessor alocado à disciplina {disciplina['nome']}:")
-        print(f"Nome: {professor['nome']}")
-        print(f"ID: {professor['professorId']}")
+        print(f"\nProfessores alocados à disciplina {disciplina['nome']}:")
+        for professor in professores:
+            print(f"- Nome: {professor['nome']} | ID: {professor['professorId']}")
 
     input("\nPressione Enter para voltar ao menu anterior.")

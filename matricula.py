@@ -1,11 +1,11 @@
 import os
 from cadastro import alunos, turmas
 
-def limpar_tela():
+def clearScreen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def matricular_aluno():
-    limpar_tela()
+def enrollStudent():
+    clearScreen()
     print("\n--- Matricular Aluno em Turma ---")
 
     # Verificar se existem alunos cadastrados
@@ -22,26 +22,26 @@ def matricular_aluno():
 
     # Pedir o nome e o ID do aluno para matrícula
     while True:
-        nome_aluno = input("Digite o nome do aluno (ou 0 para cancelar): ").strip()
-        if nome_aluno == "0":
+        studentName = input("Digite o nome do aluno (ou 0 para cancelar): ").strip()
+        if studentName == "0":
             print("Matrícula cancelada.")
             input("\nPressione Enter para continuar...")
             return
 
-        id_aluno = input("Digite o ID do aluno (ou 0 para cancelar): ").strip()
-        if id_aluno == "0":
+        studentId = input("Digite o ID do aluno (ou 0 para cancelar): ").strip()
+        if studentId == "0":
             print("Matrícula cancelada.")
             input("\nPressione Enter para continuar...")
             return
 
         # Localizar o aluno com base no nome e ID
-        aluno_selecionado = next(
-            (aluno for aluno in alunos if aluno["nome"] == nome_aluno and aluno["alunoId"] == id_aluno),
+        selectedStudent = next(
+            (aluno for aluno in alunos if aluno["nome"] == studentName and aluno["alunoId"] == studentId),
             None
         )
 
-        if aluno_selecionado:
-            print(f"Aluno encontrado: {aluno_selecionado['nome']} (ID: {aluno_selecionado['alunoId']})")
+        if selectedStudent:
+            print(f"Aluno encontrado: {selectedStudent['nome']} (ID: {selectedStudent['alunoId']})")
             break
         else:
             print("Aluno não encontrado. Verifique o nome e o ID e tente novamente.")
@@ -53,23 +53,23 @@ def matricular_aluno():
 
     # Selecionar a turma
     while True:
-        escolha_turma = input("Selecione o número da turma (ou 0 para cancelar): ").strip()
-        if escolha_turma == "0":
+        classChoice = input("Selecione o número da turma (ou 0 para cancelar): ").strip()
+        if classChoice == "0":
             print("Matrícula cancelada.")
             input("\nPressione Enter para continuar...")
             return
 
-        if escolha_turma.isdigit() and 1 <= int(escolha_turma) <= len(turmas):
-            turma_selecionada = turmas[int(escolha_turma) - 1]
+        if classChoice.isdigit() and 1 <= int(classChoice) <= len(turmas):
+            selectedClass = turmas[int(classChoice) - 1]
             break
         else:
             print("Opção inválida. Tente novamente.")
 
     # Verificar se o aluno já está matriculado na turma
-    if aluno_selecionado in turma_selecionada["alunos"]:
-        print(f"O aluno {aluno_selecionado['nome']} já está matriculado na turma {turma_selecionada['nome']}.")
+    if selectedStudent in selectedClass["alunos"]:
+        print(f"O aluno {selectedStudent['nome']} já está matriculado na turma {selectedClass['nome']}.")
     else:
-        turma_selecionada["alunos"].append(aluno_selecionado)
-        print(f"Aluno {aluno_selecionado['nome']} matriculado na turma {turma_selecionada['nome']} com sucesso!")
+        selectedClass["alunos"].append(selectedStudent)
+        print(f"Aluno {selectedStudent['nome']} matriculado na turma {selectedClass['nome']} com sucesso!")
 
     input("\nPressione Enter para continuar...")

@@ -8,32 +8,33 @@ professores = []
 disciplinas = []
 turmas = []
 
-# Funções auxiliares para manipulação do sistema
-def limpar_tela():
+
+def clearScreen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def getAlunoId():
+# Funções para gerar IDs 
+def generateStudentId():
     return ''.join(random.choices(string.ascii_letters + string.digits, k=5))
 
-def getProfessorId():
+def generateTeacherId():
     letra = random.choice(string.ascii_uppercase)
     numeros = ''.join(random.choices(string.digits, k=4))
     return letra + numeros
 
-def getDisciplinaId():
+def generateDisciplineId():
     return ''.join(random.choices(string.ascii_letters + string.digits, k=3))
 
-def getTurmaId():
+def generateClassId():
     return ''.join(random.choices(string.ascii_letters + string.digits, k=4))
 
-#Validação do CPF
-def validar_cpf(cpf):
+# Validação do CPF
+def validateCpf(cpf):
     return cpf.isdigit() and len(cpf) == 11
 
 # Submenu de cadastro
-def cadastroSubMenu():
+def registrationSubMenu():
     while True:
-        limpar_tela()
+        clearScreen()
         print("\n=== MENU DE CADASTRO ===")
         print("1 - Cadastrar Aluno")
         print("2 - Cadastrar Professor")
@@ -42,17 +43,17 @@ def cadastroSubMenu():
         print("5 - Voltar ao Menu Principal")
 
         try:
-            opcao = int(input("Selecione uma opção: ").strip())
-            limpar_tela()
-            match opcao:
+            option = int(input("Selecione uma opção: ").strip())
+            clearScreen()
+            match option:
                 case 1:
-                    cadastrar_aluno()
+                    registerStudent()
                 case 2:
-                    cadastrar_professor()
+                    registerTeacher()
                 case 3:
-                    cadastrar_disciplina()
+                    registerDiscipline()
                 case 4:
-                    cadastrar_turma()
+                    registerClass()
                 case 5:
                     break
                 case _:
@@ -63,17 +64,17 @@ def cadastroSubMenu():
             input("Pressione Enter para continuar...")
 
 # Funções de cadastro
-#Aluno
-def cadastrar_aluno():
-    limpar_tela()
+# Aluno
+def registerStudent():
+    clearScreen()
     print("=== Cadastro de Aluno ===")
     nome = input("Nome: ").strip()
-    alunoId = getAlunoId()
+    alunoId = generateStudentId()
     dataNascimento = input("Data de nascimento (dd/mm/aaaa): ").strip()
 
     while True:
         cpf = input("CPF (apenas números): ").strip()
-        if validar_cpf(cpf):
+        if validateCpf(cpf):
             break
         else:
             print("CPF inválido! Certifique-se de digitar 11 números.")
@@ -93,21 +94,21 @@ def cadastrar_aluno():
         "telefone": telefone,
         "email": email,
     })
-    limpar_tela()
+    clearScreen()
     print(f"Aluno cadastrado com sucesso!\nNome: {nome}\nID: {alunoId}")
     input("Pressione Enter para continuar...")
 
-#Professor
-def cadastrar_professor():
-    limpar_tela()
+# Professor
+def registerTeacher():
+    clearScreen()
     print("=== Cadastro de Professor ===")
     nome = input("Nome: ").strip()
-    professorId = getProfessorId()
+    professorId = generateTeacherId()
     dataNascimento = input("Data de nascimento (dd/mm/aaaa): ").strip()
 
     while True:
         cpf = input("CPF (apenas números): ").strip()
-        if validar_cpf(cpf):
+        if validateCpf(cpf):
             break
         else:
             print("CPF inválido! Certifique-se de digitar 11 números.")
@@ -127,16 +128,16 @@ def cadastrar_professor():
         "telefone": telefone,
         "email": email,
     })
-    limpar_tela()
+    clearScreen()
     print(f"Professor cadastrado com sucesso!\nNome: {nome}\nID: {professorId}")
     input("Pressione Enter para continuar...")
 
-#Disciplina
-def cadastrar_disciplina():
-    limpar_tela()
+# Disciplina
+def registerDiscipline():
+    clearScreen()
     print("=== Cadastro de Disciplina ===")
     nome = input("Nome da disciplina: ").strip()
-    disciplinaId = getDisciplinaId()
+    disciplinaId = generateDisciplineId()
     cargaHoraria = input("Carga horária: ").strip()
 
     disciplinas.append({
@@ -145,13 +146,13 @@ def cadastrar_disciplina():
         "cargaHoraria": cargaHoraria,
         "professor": None
     })
-    limpar_tela()
+    clearScreen()
     print(f"Disciplina cadastrada com sucesso!\nNome: {nome}\nID: {disciplinaId}")
     input("Pressione Enter para continuar...")
 
-#Turmas
-def cadastrar_turma():
-    limpar_tela()
+# Turmas
+def registerClass():
+    clearScreen()
     print("=== Cadastro de Turma ===")
 
     if not alunos:
@@ -170,24 +171,24 @@ def cadastrar_turma():
         return
 
     nome = input("Nome da turma: ").strip()
-    codigo = getTurmaId()
+    codigo = generateClassId()
 
-    #Verificação de disciplinas disponiveis para alocação.
-    disciplinas_disponiveis = [d for d in disciplinas]
+    # Verificação de disciplinas disponíveis para alocação.
+    disciplinasDisponiveis = [d for d in disciplinas]
     print("\nDisciplinas disponíveis para associação:")
-    for i, disciplina in enumerate(disciplinas_disponiveis, start=1):
+    for i, disciplina in enumerate(disciplinasDisponiveis, start=1):
         print(f"{i} - {disciplina['nome']} (ID: {disciplina['disciplinaId']})")
 
-    disciplinas_associadas = []
+    disciplinasAssociadas = []
     while True:
         opcao = input("Digite o número da disciplina para associar ou 0 para encerrar: ").strip()
         if opcao == "0":
             break
         try:
             index = int(opcao) - 1
-            if 0 <= index < len(disciplinas_disponiveis):
-                disciplinas_associadas.append(disciplinas_disponiveis[index])
-                print(f"Disciplina {disciplinas_disponiveis[index]['nome']} associada com sucesso!")
+            if 0 <= index < len(disciplinasDisponiveis):
+                disciplinasAssociadas.append(disciplinasDisponiveis[index])
+                print(f"Disciplina {disciplinasDisponiveis[index]['nome']} associada com sucesso!")
             else:
                 print("Opção inválida. Tente novamente.")
         except ValueError:
@@ -196,9 +197,9 @@ def cadastrar_turma():
     turmas.append({
         "nome": nome,
         "codigo": codigo,
-        "disciplinas": disciplinas_associadas,
+        "disciplinas": disciplinasAssociadas,
         "alunos": []
     })
-    limpar_tela()
+    clearScreen()
     print(f"Turma cadastrada com sucesso!\nNome: {nome}\nID: {codigo}")
     input("Pressione Enter para continuar...")

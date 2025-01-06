@@ -1,14 +1,14 @@
 import os
-from alocar_professores import alocar_professores
-from filtrar_professores import filtrar_professores
-from adicionar_disciplinas_turma import adicionar_disciplinas_em_turma
+from alocar_professores import allocateProfessors
+from filtrar_professores import filterProfessors
+from adicionar_disciplinas_turma import addSubjectsToClass
 
-def limpar_tela():
+def clearScreen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def administracao_menu():
+def administrationMenu():
     while True:
-        limpar_tela()
+        clearScreen()
         print("\n=== MENU DE ADMINISTRAÇÃO ===")
         print("1 - Alocação de Professores")
         print("2 - Filtrar Professores por Matéria")
@@ -17,16 +17,15 @@ def administracao_menu():
 
         try:
             mode = int(input("Selecione uma opção: ").strip())
-            limpar_tela()
+            clearScreen()
             match mode:
                 case 1:  # Alocação de Professores
-                    alocar_professores()
+                    allocateProfessors()
                 case 2:  # Filtrar Professores por Matéria
-                    filtrar_professores()
+                    filterProfessors()
                 case 3:  # Adicionar Disciplinas em Turma
-                    adicionar_disciplinas_em_turma()
+                    addSubjectsToClass()
                 case 4:  # Voltar ao Menu Principal
-                    
                     break
                 case _:
                     print("Opção inválida! Por favor, tente novamente.")

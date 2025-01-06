@@ -1,33 +1,35 @@
 import os
 import time
-from cadastro import cadastroSubMenu  
-from consulta import consultar
-from matricula import matricular_aluno
-from administracao import administracao_menu
+from cadastro import registrationSubMenu
+from consulta import consultationSubMenu
+from matricula import enrollStudent
+from administracao import administrationMenu
 
 # Função para exibir a mensagem inicial
-def startSchool_message():
+def startSchoolMessage():
     print("""
+          
     ░██████╗░█████╗░██╗░░██╗░█████╗░░█████╗░██╗░░░░░  ░██████╗██╗░░░██╗░██████╗████████╗███████╗███╗░░░███╗
     ██╔════╝██╔══██╗██║░░██║██╔══██╗██╔══██╗██║░░░░░  ██╔════╝╚██╗░██╔╝██╔════╝╚══██╔══╝██╔════╝████╗░████║
     ╚█████╗░██║░░╚═╝███████║██║░░██║██║░░██║██║░░░░░  ╚█████╗░░╚████╔╝░╚█████╗░░░░██║░░░█████╗░░██╔████╔██║
     ░╚═══██╗██║░░██╗██╔══██║██║░░██║██║░░██║██║░░░░░  ░╚═══██╗░░╚██╔╝░░░╚═══██╗░░░██║░░░██╔══╝░░██║╚██╔╝██║
     ██████╔╝╚█████╔╝██║░░██║╚█████╔╝╚█████╔╝███████╗  ██████╔╝░░░██║░░░██████╔╝░░░██║░░░███████╗██║░╚═╝░██║
     ╚═════╝░░╚════╝░╚═╝░░╚═╝░╚════╝░░╚════╝░╚══════╝  ╚═════╝░░░░╚═╝░░░╚═════╝░░░░╚═╝░░░╚══════╝╚═╝░░░░░╚═╝
+    
     """)
     time.sleep(1.5)  # Aguarda 1.5 segundos
-    os.system('cls' if os.name == 'nt' else 'clear')  # Limpa a tela
+    os.system('cls' if os.name == 'nt' else 'clear')  
 
 # Função para encerrar o programa
 def endProgram():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("Sessão encerrada.")
-    exit()
+    os.system('cls' if os.name == 'nt' else 'clear')  # Limpa a tela
+    print("Sessão encerrada.")  # Mensagem de encerramento
+    exit()  # Finaliza a execução do programa
 
 # Menu principal
 def selectOption():
     while True:
-        os.system('cls' if os.name == 'nt' else 'clear')  # Limpa a tela ao exibir o menu principal
+        os.system('cls' if os.name == 'nt' else 'clear') 
         print("\n=== MENU PRINCIPAL ===")
         print("1 - Cadastro")
         print("2 - Consultar Informações")
@@ -36,32 +38,30 @@ def selectOption():
         print("5 - Sair")
 
         try:
-            mode = int(input("Selecione uma opção: ").strip())
-            os.system('cls' if os.name == 'nt' else 'clear')  # Limpa a tela imediatamente após a escolha
+            mode = int(input("Selecione uma opção: ").strip())  
+            os.system('cls' if os.name == 'nt' else 'clear')  
 
             match mode:
                 case 1:
-                    cadastroSubMenu()  # Chama o submenu de cadastro
+                    registrationSubMenu()  # Chama o submenu de cadastro
                 case 2:
-                    consultar()  # Consultar informações
+                    consultationSubMenu()  # Chama o submenu de consultas
                 case 3:
-                    matricular_aluno()  # Matrícula
+                    enrollStudent()  # Função de matrículas
                 case 4:
-                    administracao_menu()  # Administração
+                    administrationMenu()  # Chama o menu de administração
                 case 5:
                     endProgram()  # Finaliza o programa
                 case _:
-                    print("Opção inválida! Por favor, tente novamente.")
+                    print("Opção inválida! Por favor, tente novamente.")  
                     input("Pressione Enter para continuar...")
                     os.system('cls' if os.name == 'nt' else 'clear')  
         except ValueError:
-            print("Entrada inválida! Por favor, digite um número.")
+            print("Entrada inválida! Por favor, digite um número.")  
             input("Pressione Enter para continuar...")
-            os.system('cls' if os.name == 'nt' else 'clear')  # Limpa a tela após mensagem de erro
-
-
-
+            os.system('cls' if os.name == 'nt' else 'clear')  
+            
 # Início do programa
 if __name__ == "__main__":
-    startSchool_message()
-    selectOption()
+    startSchoolMessage()  
+    selectOption()  
