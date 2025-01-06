@@ -4,7 +4,7 @@ from cadastro import alunos, professores, disciplinas, turmas
 def clearScreen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-# Função principal para consulta
+# Função do sub-menu de consulta
 def consultationSubMenu():
     while True:
         clearScreen()
@@ -22,7 +22,7 @@ def consultationSubMenu():
                 case 1:
                     consultStudent()
                 case 2:
-                    consultProfessor()
+                    consultTeacher()
                 case 3:
                     consultDiscipline()
                 case 4:
@@ -70,7 +70,7 @@ def consultStudent():
     input("\nPressione Enter para continuar...")
     
 # Professor
-def consultProfessor():
+def consultTeacher():
     clearScreen()
     print("=== Consulta de Professor ===")
     term = input("Digite o nome ou ID do professor: ").strip()

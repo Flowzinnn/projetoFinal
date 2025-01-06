@@ -5,6 +5,10 @@ from consulta import consultationSubMenu
 from matricula import enrollStudent
 from administracao import administrationMenu
 
+# Função para limpar a tela
+def clearScreen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 # Função para exibir a mensagem inicial
 def startSchoolMessage():
     print("""
@@ -17,19 +21,19 @@ def startSchoolMessage():
     ╚═════╝░░╚════╝░╚═╝░░╚═╝░╚════╝░░╚════╝░╚══════╝  ╚═════╝░░░░╚═╝░░░╚═════╝░░░░╚═╝░░░╚══════╝╚═╝░░░░░╚═╝
     
     """)
-    time.sleep(1.5)  # Aguarda 1.5 segundos
-    os.system('cls' if os.name == 'nt' else 'clear')  
+    time.sleep(2)  # Aguarda 2 segundos antes de iniciar o programa, coisinha boba apenas para estilização do código
+    clearScreen()  
 
 # Função para encerrar o programa
 def endProgram():
-    os.system('cls' if os.name == 'nt' else 'clear')  # Limpa a tela
-    print("Sessão encerrada.")  # Mensagem de encerramento
-    exit()  # Finaliza a execução do programa
+    clearScreen()
+    print("Sessão encerrada.")  
+    exit()  
 
 # Menu principal
 def selectOption():
     while True:
-        os.system('cls' if os.name == 'nt' else 'clear') 
+        clearScreen() 
         print("\n=== MENU PRINCIPAL ===")
         print("1 - Cadastro")
         print("2 - Consultar Informações")
@@ -39,7 +43,7 @@ def selectOption():
 
         try:
             mode = int(input("Selecione uma opção: ").strip())  
-            os.system('cls' if os.name == 'nt' else 'clear')  
+            clearScreen()  
 
             match mode:
                 case 1:
@@ -55,11 +59,11 @@ def selectOption():
                 case _:
                     print("Opção inválida! Por favor, tente novamente.")  
                     input("Pressione Enter para continuar...")
-                    os.system('cls' if os.name == 'nt' else 'clear')  
+                    clearScreen() 
         except ValueError:
             print("Entrada inválida! Por favor, digite um número.")  
             input("Pressione Enter para continuar...")
-            os.system('cls' if os.name == 'nt' else 'clear')  
+            clearScreen()  
             
 # Início do programa
 if __name__ == "__main__":

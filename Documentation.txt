@@ -16,6 +16,9 @@ https://www.w3schools.com/python/
 
 https://www.programiz.com/python-programming
 
+# Claro, não poderia deixar de fazer uma menção honrosa ao ChatGPT por tirar todas as minhas dúvidas
+ e ajudar a resolver os INCONTAVEIS ERROS que esse código teve ao longo de sua criação.
+
 
                                                 #sistema escolar - cadastrar alunos, professores, turmas, disciplinas.
                                                         #alunos: nome matriculas, id(vc cria), data de nascimento sexo endereço telefone email
@@ -46,59 +49,48 @@ Estrutura do Projeto
 
 Arquivos e Funções Principais
 
-1. index.py
+1. Index:
         Responsável pelo menu principal do sistema e pela navegação entre as módulos.
 
 Funções principais:
         startSchool_message: Exibe uma mensagem de boas-vindas.
         selectOption: Permite selecionar as opções do menu principal (cadastro, consulta, matrículas, administração).
 
-2. cadastro.py
+2. Cadastro:
         Contém as funções para cadastrar alunos, professores, disciplinas e turmas.
         Verifica se CPF tem 11 dígitos.
         Gera IDs únicos para alunos, professores, disciplinas e turmas.
 
-Funções principais:
-        cadastroSubMenu: Submenu para seleção do tipo de cadastro.
-        cadastroAluno: Cadastra um novo aluno.
-        cadastroProfessor: Cadastra um novo professor.
-        cadastrar_disciplina: Adiciona uma nova disciplina.
-        cadastrar_turma: Cria uma nova turma verificando pré-requisitos (alunos, professores e disciplinas).
+Funções principais:        
+        registerStudent: Cadastra um novo aluno.
+        registerTeacher: Cadastra um novo professor.
+        registerDiscipline: Adiciona uma nova disciplina.
+        registerClass: Cria uma nova turma verificando pré-requisitos (alunos, professores e disciplinas).
 
-3. consulta.py
+3. Consulta:
         Permite realizar consultas sobre alunos, professores, disciplinas e turmas.
-        Confirma os 6 primeiros dígitos do CPF para exibir informações de alunos e professores (exibe mensagens claras caso não encontre registros).
+        Exige os 6 primeiros dígitos do CPF para exibir informações de alunos e professores pela Lei Geral de Proteção de Dados LGPD. 
+        Exibe mensagens claras caso não encontre registros.
 
 Funções principais:
-        consultar_aluno: Exibe informações de um aluno e suas turmas.
-        consultar_professor: Exibe informações de um professor, suas disciplinas e turmas.
-        consultar_disciplina: Mostra detalhes de uma disciplina e seu professor.
-        consultar_turma: Lista as disciplinas, professor responsável e alunos de uma turma.
+        consultStudent: Exibe informações de um aluno e suas turmas.
+        consultTeacher: Exibe informações de um professor, suas disciplinas e turmas.
+        consultDiscipline: Mostra detalhes de uma disciplina e seu professor.
+        consultClass: Lista as disciplinas, professor responsável e alunos de uma turma.
 
-4. matricula.py
+4. Matricula:
         Realiza a matrícula de alunos em turmas.
         Verifica se o aluno já está matriculado em uma turma antes de matricular.
 
 Funções principais:
-        matricular_aluno: Permite selecionar um aluno e matriculá-lo em uma turma.
+        enrollStudent: Permite selecionar um aluno e matriculá-lo em uma turma.
 
-5. administracao.py
-        Menu para administrar alocações e adicionar disciplinas em turmas.
+5. Administracao:
+        Menu para administrar alocações de professores, filtrar professores por disciplina e adicionar disciplinas em turmas.
         Garante que disciplinas e professores existam antes de realizar alocações.
 
 Funções principais:
-        alocar_professores: Aloca professores a disciplinas.
-        adicionar_disciplinas_turma: Adiciona disciplinas adicionais a turmas.
-        administracao_menu: Menu principal de administração.
-
-6. alocar_professores.py
-        Permite alocar professores às disciplinas.
-
-Funções principais:
-        alocar_professores: Seleciona um professor e o aloca a uma disciplina.
-
-7. filtrar_professores.py
-        Permite filtrar professores por disciplina.
-
-Funções principais:
-        filtrar_professores: Busca disciplinas e exibe o professor vinculado.
+        allocateProfessors: Seleciona um professor e o aloca a uma disciplina.
+        addSubjectsToClass: Adiciona disciplinas adicionais a turmas.
+        administrationMenu: Menu principal de administração.
+        filterProfessors: Busca disciplinas e exibe o professor vinculado.
